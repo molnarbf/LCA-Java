@@ -6,7 +6,7 @@ class LCATest {
 
 	@Test
 	void testLowestCommonAncestor() {
-		fail("Not yet implemented");
+
 	}
 
 }
