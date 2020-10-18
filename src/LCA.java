@@ -39,11 +39,16 @@ public class LCA {
 			} else {
 				System.out.println(nr2 + " is not in the path");
 			}		
+			return -1;
 		}
 		int i;
 		for(i = 0; i < path1.size() && i < path2.size(); i++) {
-			
+			if(path1.get(i).equals(path2.get(i)) == false) {
+				break;
+			}
 		}
+		// return LCA
+		return path1.get(i-1);
 	}
 	// function to find and store path from root node to given root node
 	private boolean findPath(Node root, int nr, List<Integer> path) {
