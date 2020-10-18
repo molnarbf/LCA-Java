@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -32,6 +35,7 @@ public class LCATest {
 		int result = 2;
 		assertEquals("Testing findLCA", result, tree.findLCA(4,2));
 	}
+	
 	@Test
 	public void testFindLCA3() {
 		LCA tree = new LCA(); 
@@ -45,6 +49,7 @@ public class LCATest {
 		int result = 4;
 		assertEquals("Testing findLCA", result, tree.findLCA(4,4));
 	}
+	
 	@Test
 	public void testFindLCA4() {
 		LCA tree = new LCA(); 
@@ -58,6 +63,7 @@ public class LCATest {
 		int result = 2;
 		assertEquals("Testing findLCA", result, tree.findLCA(4,5));
 	}
+	
 	@Test
 	public void testFindLCA5() {
 		LCA tree = new LCA(); 
@@ -71,8 +77,15 @@ public class LCATest {
 		int result = 1;
 		assertEquals("Testing findLCA", result, tree.findLCA(4,6));
 	}
-
-
+	@Test
+	public void testFindPath() {
+		Node root = null;
+		LCA tree = new LCA();
+		tree.root = root;
+		int number1 = 1;
+		int number2 = 2;
+		assertEquals("Testing findPath", -1, tree.findLCA(number1, number2));
+	}
 
 }
 
