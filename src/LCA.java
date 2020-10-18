@@ -28,7 +28,22 @@ public class LCA {
 	}
 
 	private int findLCA2(Node root, int nr1, int nr2) {
-		
+		if(!findPath(root, nr1, path1) || !findPath(root, nr2, path2)) {
+			if(path1.size() > 0) {
+				System.out.println(nr1 + " is in the path");
+			} else {
+				System.out.println(nr1 + " is not in the path");
+			}
+			if(path2.size() > 0) {
+				System.out.println(nr2 + " is in the path");
+			} else {
+				System.out.println(nr2 + " is not in the path");
+			}		
+		}
+		int i;
+		for(i = 0; i < path1.size() && i < path2.size(); i++) {
+			
+		}
 	}
 	// function to find and store path from root node to given root node
 	private boolean findPath(Node root, int nr, List<Integer> path) {
