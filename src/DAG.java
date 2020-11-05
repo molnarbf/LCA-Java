@@ -9,15 +9,18 @@ public class DAG {
 
 	private final int vertex;
 	private final ArrayList<Integer>[] next;
+	private final ArrayList<Integer>[] reverseNext;
 
 	// constructor
 	public DAG(int vertex) {
 		this.vertex = vertex;
 		next = (ArrayList<Integer>[]) new ArrayList[vertex];
+		reverseNext = (ArrayList<Integer>[]) new ArrayList[vertex];
 
 		// Arraylist for each vertex
 		for(int i = 0; i < vertex; i++) {
 			next[i] = new ArrayList<Integer>();
+			reverseNext[i] = new ArrayList<Integer>();
 		}
 	}
 
@@ -32,6 +35,7 @@ public class DAG {
 		// check vertices are different, check path exists between two vertices, check there is not already an edge pointing from one to the other
 		if(v != w && !hasPath(w,v) && !next[v].contains(w)) {
 			next[v].add(w);
+			reverseNext[w].add(v);
 			return true;
 		}
 		return false;
@@ -55,7 +59,7 @@ public class DAG {
 			dfs(graph,x);
 		}
 
-		// depth first search
+		// depth first search in flow of direction
 		private void dfs(DAG graph, int v) {
 			marked[vertex] = true;
 			for(int w : graph.next[v]) {
@@ -64,5 +68,25 @@ public class DAG {
 				}
 			}
 		}
+
+		// depth first search against flow of direction (all ancestors)
+		private void reverseDFS(DAG graph, int vertex) {
+			reverseMarked[vertex] = true;
+			for(int w : graph.reverseNext[vertex]) {
+				if(!reverseMarked[w]) {
+					reverseDFS(graph, w);
+
+				}
+			}
+		}
+		
+		public boolean visited(int vertex) {
+			return marked[vertex]; 
+		}
+		
+		public boolean reverseMarked(int vertex) {
+			return reverseMarked[vertex];
+		}
 	}
 }
+
