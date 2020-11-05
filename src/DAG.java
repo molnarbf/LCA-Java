@@ -36,9 +36,33 @@ public class DAG {
 		}
 		return false;
 	}
-	
-	// checks if there is a path between two vertices
+
+	// checks if there is a path between two vertices using depth first search
 	public boolean hasPath(int i, int j) {
-		
+
+	}
+
+	// create depth first search object on directed graph
+	private class DirectedDepthFirst {
+
+		private boolean[] marked;
+		private boolean[] reverseMarked;
+
+		// constructor
+		public DirectedDepthFirst(DAG graph, int x) {
+			marked = new boolean[graph.vertex];
+			reverseMarked = new boolean[graph.vertex];
+			dfs(graph,x);
+		}
+
+		// depth first search
+		private void dfs(DAG graph, int v) {
+			marked[vertex] = true;
+			for(int w : graph.next[v]) {
+				if(!marked[w]) {
+					dfs(graph, w);
+				}
+			}
+		}
 	}
 }
