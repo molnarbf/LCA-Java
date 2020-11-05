@@ -22,6 +22,7 @@ public class LCATest {
 		int result = 1;
 		assertEquals("Testing findLCA", result, tree.findLCA(2,3));
 	}
+	
 	@Test
 	public void testFindLCA2() {
 		LCA tree = new LCA(); 
@@ -77,6 +78,7 @@ public class LCATest {
 		int result = 1;
 		assertEquals("Testing findLCA", result, tree.findLCA(4,6));
 	}
+	
 	@Test
 	public void testFindPath() {
 		Node root = null;
@@ -86,7 +88,11 @@ public class LCATest {
 		int number2 = 2;
 		assertEquals("Testing findPath", -1, tree.findLCA(number1, number2));
 	}
-
+	
+	@Test
+	public void testDAG() {
+		
+	}
 }
 
 
