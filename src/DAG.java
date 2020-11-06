@@ -43,7 +43,8 @@ public class DAG {
 
 	// checks if there is a path between two vertices using depth first search
 	public boolean hasPath(int i, int j) {
-
+		DirectedDepthFirst dfsObj = new DirectedDepthFirst(this, i);
+		return dfsObj.visited(j);
 	}
 
 	// create depth first search object on directed graph
@@ -75,7 +76,6 @@ public class DAG {
 			for(int w : graph.reverseNext[vertex]) {
 				if(!reverseMarked[w]) {
 					reverseDFS(graph, w);
-
 				}
 			}
 		}
