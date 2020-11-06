@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /* Directed Acyclic Graph implementation of finding the Lowest Common Ancestor 
  *
@@ -47,6 +49,24 @@ public class DAG {
 		return dfsObj.visited(j);
 	}
 
+	// get distance between two vertices
+	private int getDist(int v, int w) {
+		if(v == w) {
+			return 0;
+		}
+		Queue<Integer> q = new LinkedList<Integer>();
+		int[] distTo = new int[this.vertex];
+		boolean[] marked = new boolean[this.vertex];
+		
+		for(int i = 0; i < this.vertex; i++) {
+			distTo[vertex] = Integer.MAX_VALUE;
+		}
+		
+		distTo[v] = 0;
+		marked[v] = true;
+		q.add(v);
+ 	}
+	
 	// create depth first search object on directed graph
 	private class DirectedDepthFirst {
 
