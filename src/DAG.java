@@ -65,6 +65,19 @@ public class DAG {
 		distTo[v] = 0;
 		marked[v] = true;
 		q.add(v);
+		
+		while(!q.isEmpty()) {
+			int x = q.remove();
+			for(int y : this.next[v]) {
+				if(!marked[y]) {
+					distTo[y] = distTo[x] + 1;
+					marked[y] = true;
+					q.add(y);
+				}
+			}
+		}
+		
+		return distTo[w];
  	}
 	
 	// create depth first search object on directed graph
