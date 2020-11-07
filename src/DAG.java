@@ -53,16 +53,35 @@ public class DAG {
 	public ArrayList<Integer> LCA(int v, int w) {
 		ArrayList<Integer> lca = new ArrayList<Integer>();
 		int maxDist = Integer.MAX_VALUE;
-		
+
 		// check for invalid input
 		if(v == w || v >= this.vertex || w >= this.vertex || v < 0 || w < 0) {
 			return lca;
 		}
 		DirectedDepthFirst dfsObj = new DirectedDepthFirst(this, v);
 		dfsObj.reverseDFS(this, v);
-		int xDist, yDist;
+		int vDist, wDist;
+
+		for(int i = 0; i < this.vertex; i++) {
+
+			if(dfsObj.reverseVisited(i) && hasPath(i, w)) {
+				vDist = getDist(i, v);
+				wDist = getDist(i, w);
+
+				if(Integer.max(vDist, wDist) < maxDist) {
+					lca = new ArrayList<Integer>();
+					lca.add(i);
+					maxDist = Integer.max(vDist, wDist);
+				}
+				else if(Integer.max(vDist, wDist) == maxDist) {
+					lca.add(i);
+					maxDist = Integer.max(vDist, wDist);
+				}
+			}
+		}
+		return lca;
 	}
-	
+
 	// get distance between two vertices
 	private int getDist(int v, int w) {
 		if(v == w) {
@@ -71,15 +90,15 @@ public class DAG {
 		Queue<Integer> q = new LinkedList<Integer>();
 		int[] distTo = new int[this.vertex];
 		boolean[] marked = new boolean[this.vertex];
-		
+
 		for(int i = 0; i < this.vertex; i++) {
 			distTo[vertex] = Integer.MAX_VALUE;
 		}
-		
+
 		distTo[v] = 0;
 		marked[v] = true;
 		q.add(v);
-		
+
 		while(!q.isEmpty()) {
 			int x = q.remove();
 			for(int y : this.next[v]) {
@@ -90,10 +109,10 @@ public class DAG {
 				}
 			}
 		}
-		
+
 		return distTo[w];
- 	}
-	
+	}
+
 	// create depth first search object on directed graph
 	private class DirectedDepthFirst {
 
@@ -126,12 +145,12 @@ public class DAG {
 				}
 			}
 		}
-		
+
 		public boolean visited(int vertex) {
 			return marked[vertex]; 
 		}
-		
-		public boolean reverseMarked(int vertex) {
+
+		public boolean reverseVisited(int vertex) {
 			return reverseMarked[vertex];
 		}
 	}
