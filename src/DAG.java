@@ -50,6 +50,20 @@ public class DAG {
 	}
 
 	// LCA
+	// Steps
+	// Mark all X's parents
+	// For each of X's parents, check if Y is child
+	// if it is
+	//  	get distance to X
+	//  	get distance to Y
+	//
+	// if max(xDist, yDist) < currentMaxDist
+	// 		empty bag and put in this node
+	//
+	// if max(xDist, yDist) == currentMaxDist
+	//		add this node to bag
+	//
+	
 	public ArrayList<Integer> LCA(int v, int w) {
 		ArrayList<Integer> lca = new ArrayList<Integer>();
 		int maxDist = Integer.MAX_VALUE;
