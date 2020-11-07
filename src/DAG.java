@@ -49,6 +49,20 @@ public class DAG {
 		return dfsObj.visited(j);
 	}
 
+	// LCA
+	public ArrayList<Integer> LCA(int v, int w) {
+		ArrayList<Integer> lca = new ArrayList<Integer>();
+		int maxDist = Integer.MAX_VALUE;
+		
+		// check for invalid input
+		if(v == w || v >= this.vertex || w >= this.vertex || v < 0 || w < 0) {
+			return lca;
+		}
+		DirectedDepthFirst dfsObj = new DirectedDepthFirst(this, v);
+		dfsObj.reverseDFS(this, v);
+		int xDist, yDist;
+	}
+	
 	// get distance between two vertices
 	private int getDist(int v, int w) {
 		if(v == w) {
