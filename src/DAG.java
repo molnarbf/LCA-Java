@@ -26,9 +26,17 @@ public class DAG {
 			reverseNext[i] = new ArrayList<Integer>();
 		}
 	}
+	
+	// returns number of vertices in DAG
 	public int getVertices() {
 		return vertex;
 	}
+	
+	// returns list of vertices from vertex
+	public ArrayList<Integer> next(int vertex) {
+		return next[vertex];
+	}
+	
 	// checks if possible to add edge from one vertex to another
 	public boolean addEdge(int v, int w) {
 

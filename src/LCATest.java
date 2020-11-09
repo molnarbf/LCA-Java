@@ -114,7 +114,15 @@ public class LCATest {
 	@Test
 	public void testVertices() {
 		DAG graph = new DAG(5);
-		assertEquals("Test", 5, graph.getVertices());
+		assertEquals("Test number of vertices", 5, graph.getVertices());
+	}
+	
+	@Test
+	public void testNext() {
+		DAG graph = new DAG(5);
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		
+		assertTrue(graph.next(0).size() == result.size());
 	}
 }
 
