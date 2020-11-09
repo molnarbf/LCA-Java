@@ -89,9 +89,16 @@ public class LCATest {
 		assertEquals("Testing findPath", -1, tree.findLCA(number1, number2));
 	}
 	
+	// Tests for DAG implementation
+	
 	@Test
-	public void testDAG() {
+	public void testAddEdge() {
+		DAG graph = new DAG(5); 
 		
+		assertEquals("Testing a valid edge", true, graph.addEdge(0, 1));
+		assertEquals("Testing a valid edge", true, graph.addEdge(1, 2));
+		assertEquals("Testing already existing edge", false, graph.addEdge(1, 2));
+
 	}
 }
 

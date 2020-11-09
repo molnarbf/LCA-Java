@@ -14,19 +14,20 @@ public class DAG {
 	private final ArrayList<Integer>[] reverseNext;
 
 	// constructor
+	@SuppressWarnings("unchecked")
 	public DAG(int vertex) {
 		this.vertex = vertex;
 		next = (ArrayList<Integer>[]) new ArrayList[vertex];
 		reverseNext = (ArrayList<Integer>[]) new ArrayList[vertex];
 
-		// Arraylist for each vertex
+		// Array list for each vertex
 		for(int i = 0; i < vertex; i++) {
 			next[i] = new ArrayList<Integer>();
 			reverseNext[i] = new ArrayList<Integer>();
 		}
 	}
 
-	// adds edge from one vertex to another
+	// checks if possible to add edge from one vertex to another
 	public boolean addEdge(int v, int w) {
 
 		// check if vertices are in range
@@ -35,7 +36,7 @@ public class DAG {
 		}
 
 		// check vertices are different, check path exists between two vertices, check there is not already an edge pointing from one to the other
-		if(v != w && !hasPath(w,v) && !next[v].contains(w)) {
+		if(v != w && !hasPath(w, v) && !next[v].contains(w)) {
 			next[v].add(w);
 			reverseNext[w].add(v);
 			return true;
@@ -101,6 +102,7 @@ public class DAG {
 		if(v == w) {
 			return 0;
 		}
+		
 		Queue<Integer> q = new LinkedList<Integer>();
 		int[] distTo = new int[this.vertex];
 		boolean[] marked = new boolean[this.vertex];
@@ -142,7 +144,7 @@ public class DAG {
 
 		// depth first search in flow of direction
 		private void dfs(DAG graph, int v) {
-			marked[vertex] = true;
+			marked[v] = true;
 			for(int w : graph.next[v]) {
 				if(!marked[w]) {
 					dfs(graph, w);
