@@ -97,7 +97,17 @@ public class LCATest {
 		
 		assertEquals("Testing a valid edge", true, graph.addEdge(0, 1));
 		assertEquals("Testing a valid edge", true, graph.addEdge(1, 2));
+		
 		assertEquals("Testing already existing edge", false, graph.addEdge(1, 2));
+		assertEquals("Testing adding edge to itself", false, graph.addEdge(1, 1));
+		
+		assertEquals("Testing cycle add", false, graph.addEdge(2, 1));
+		
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(5, 4));
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(5, 6));
+
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(-1, -2));
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(20, 100));
 
 	}
 }
