@@ -118,7 +118,7 @@ public class DAG {
 		boolean[] marked = new boolean[this.vertex];
 
 		for(int i = 0; i < this.vertex; i++) {
-			distTo[vertex] = Integer.MAX_VALUE;
+			distTo[i] = Integer.MAX_VALUE;
 		}
 
 		distTo[v] = 0;

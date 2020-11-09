@@ -138,6 +138,22 @@ public class LCATest {
 		assertEquals("Test for one adjacent node", result, graph.next(1));
 		assertTrue(graph.next(1).size() == result.size());
 	}
+	
+	@Test
+	public void testDAGLCA() {
+		DAG graph = new DAG(5);
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(2, 3);
+		graph.addEdge(3, 4);
+		
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		result.add(0);
+		for(int i : result)
+		{
+			assertTrue("Testing single lca return", graph.LCA(4,1).contains(i));
+		}
+	}
 }
 
 
