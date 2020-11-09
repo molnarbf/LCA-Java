@@ -26,7 +26,9 @@ public class DAG {
 			reverseNext[i] = new ArrayList<Integer>();
 		}
 	}
-
+	public int getVertices() {
+		return vertex;
+	}
 	// checks if possible to add edge from one vertex to another
 	public boolean addEdge(int v, int w) {
 

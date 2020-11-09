@@ -110,6 +110,12 @@ public class LCATest {
 		assertEquals("Testing non-existing vertex", false, graph.addEdge(20, 100));
 
 	}
+	
+	@Test
+	public void testVertices() {
+		DAG graph = new DAG(5);
+		assertEquals("Test", 5, graph.getVertices());
+	}
 }
 
 
