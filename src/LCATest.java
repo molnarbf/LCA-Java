@@ -123,6 +123,20 @@ public class LCATest {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		
 		assertTrue(graph.next(0).size() == result.size());
+		
+		graph.addEdge(0, 1);
+		graph.addEdge(1, 2);
+		result.add(2);
+		
+		assertEquals("Test for adjacent node", result, graph.next(1));
+		
+		graph.addEdge(1, 3);
+		graph.addEdge(1, 4);
+		result.add(3);
+		result.add(4);
+		
+		assertEquals("Test for one adjacent node", result, graph.next(1));
+		assertTrue(graph.next(1).size() == result.size());
 	}
 }
 
