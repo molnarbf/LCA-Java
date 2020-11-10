@@ -22,6 +22,7 @@ public class LCATest {
 		int result = 1;
 		assertEquals("Testing findLCA", result, tree.findLCA(2,3));
 	}
+	
 	@Test
 	public void testFindLCA2() {
 		LCA tree = new LCA(); 
@@ -77,6 +78,7 @@ public class LCATest {
 		int result = 1;
 		assertEquals("Testing findLCA", result, tree.findLCA(4,6));
 	}
+	
 	@Test
 	public void testFindPath() {
 		Node root = null;
@@ -86,7 +88,72 @@ public class LCATest {
 		int number2 = 2;
 		assertEquals("Testing findPath", -1, tree.findLCA(number1, number2));
 	}
+	
+	// Tests for DAG implementation
+	
+	@Test
+	public void testAddEdge() {
+		DAG graph = new DAG(5); 
+		
+		assertEquals("Testing a valid edge", true, graph.addEdge(0, 1));
+		assertEquals("Testing a valid edge", true, graph.addEdge(1, 2));
+		
+		assertEquals("Testing already existing edge", false, graph.addEdge(1, 2));
+		assertEquals("Testing adding edge to itself", false, graph.addEdge(1, 1));
+		
+		assertEquals("Testing cycle add", false, graph.addEdge(2, 1));
+		
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(5, 4));
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(5, 6));
 
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(-1, -2));
+		assertEquals("Testing non-existing vertex", false, graph.addEdge(20, 100));
+
+	}
+	
+	@Test
+	public void testVertices() {
+		DAG graph = new DAG(5);
+		assertEquals("Test number of vertices", 5, graph.getVertices());
+	}
+	
+	@Test
+	public void testNext() {
+		DAG graph = new DAG(5);
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		
+		assertTrue(graph.next(0).size() == result.size());
+		
+		graph.addEdge(0, 1);
+		graph.addEdge(1, 2);
+		result.add(2);
+		
+		assertEquals("Test for adjacent node", result, graph.next(1));
+		
+		graph.addEdge(1, 3);
+		graph.addEdge(1, 4);
+		result.add(3);
+		result.add(4);
+		
+		assertEquals("Test for one adjacent node", result, graph.next(1));
+		assertTrue(graph.next(1).size() == result.size());
+	}
+	
+	@Test
+	public void testDAGLCA() {
+		DAG graph = new DAG(5);
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(2, 3);
+		graph.addEdge(3, 4);
+		
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		result.add(0);
+		for(int i : result)
+		{
+			assertTrue("Testing single lca return", graph.LCA(4,1).contains(i));
+		}
+	}
 }
 
 
